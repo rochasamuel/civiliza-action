@@ -45,7 +45,14 @@ def createSetorPrivado():
     return setorPrivado(estoque, producao, importacao, exportacao)
 
 def createLider():
-    pass
+    """
+        Funcão que instancia um Lider
+        :return: uma instância de um Lider
+    """
+    nome = random_string_generator(10)
+    orientacao = random.choice([-1,0,1])
+    
+    return Lider(nome,orientacao)
 
 def createPais(nome, mundo):
     pass
