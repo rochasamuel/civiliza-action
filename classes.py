@@ -1,11 +1,11 @@
 ##############################################################
 class Mundo():
     """
-    Classe onde todos os outros objetos vão residir. Vai ser usada majoritariamente como um hub de informações.
+        Classe onde todos os outros objetos vão residir. Vai ser usada majoritariamente como um hub de informações.
     """
     def __init__(self):
         """
-        A classe é instanciada sem nenhum atributo porque eles são instaciados depois, recebendo Mundo() como attr.
+            A classe é instanciada sem nenhum atributo porque eles são instaciados depois, recebendo Mundo() como attr.
         """
         self.paises = {} # é um dicionário no formato {'nome_pais':Pais()}
         self.ano = 1 # Variável de contagem de turnos
@@ -16,10 +16,10 @@ class Mundo():
         pass
     def paisesAleatorios(self, n_paises=None):
         """
-        Método a ser usado para gerar interacaoFixa() aleatórias.
-        :param n_paises: (opcional) Numero preciso de países contidos. Se omitido, escolhe-se um número aleatório
-        entre 2 e o número de países.
-        :return: Dicionário no formato {'nome_pais':Pais()} contendo n_paises chaves.
+            Método a ser usado para gerar interacaoFixa() aleatórias.
+            :param n_paises: (opcional) Numero preciso de países contidos. Se omitido, escolhe-se um número aleatório
+            entre 2 e o número de países.
+            :return: Dicionário no formato {'nome_pais':Pais()} contendo n_paises chaves.
         """
         if len(self.paises) <= 2:
             # Exceção para caso esteja vazio ou com menos países do que o necessário
@@ -42,12 +42,12 @@ class Mundo():
 ##############################################################
 class Panorama():
     """
-    Classe que representa os panoramas do Mundo, ou seja a relação de cada 
-    país com outro em cada esfera(Privada, Militar e Econômica)    
+        Classe que representa os panoramas do Mundo, ou seja a relação de cada 
+        país com outro em cada esfera(Privada, Militar e Econômica)    
     """
     def __init__(self, mundo):
         """
-        :param mundo: recebe o endereço de uma instância da classe Mundo (Mundo)
+            :param mundo: recebe o endereço de uma instância da classe Mundo (Mundo)
         """
 
         # Teste para não ter países: raise alguma coisa
@@ -66,21 +66,21 @@ class Panorama():
 
     def atualizarPanorama(self):
         """
-        Função chamada para atualizar os valores do panorama geral
-        :return: retorna o panorama geral
+            Função chamada para atualizar os valores do panorama geral
+            :return: retorna o panorama geral
         """
         self.geral = self.economico + self.privado + self.militar
 
         return self.geral
 
     def alterarRelacao(self, A, B, nomePanorama, fator):
-            """
+        """
             Função chamada para alterar a relação de determinados países em determinado panorama 
             :param A: Um dos países da relação (Pais)
             :param B: Outro dos países da relação (Pais)
             :param nomePanorama: indica qual o panorama a ser alterado (str)
             :param fator: indica o fator que será adicionado ou subtraído na relação (float)
-            """
+        """
 
         if nomePanorama == 'militar':
             self.militar.loc[A, B] += fator
@@ -131,15 +131,27 @@ class Pais():
         self.mundo.paises[self.nome] = self #se adiciona na lista de países do mundo
         
 ##############################################################
-class setorEconomico():
+class SetorEconomico():
+    """
+        Classe que comporta informações sobre o setor econômico de um país
+    """
+    def __init__(self, limite_aReceber, limite_aPagar):
+        """
+            :param limite_aReceber: limite de investimento que um pais pode receber (float)
+            :param limite_aPagar: limite de investimento que um pais pode dar (float)
+        """
+        self.limite_aReceber = limite_aReceber
+        self.limite_aPagar = limite_aPagar
+        
+        self.aPagar = pd.Series(dtype = float)
+        self.aReceber = pd.Series(dtype = float)
+        
+##############################################################
+class SetorMilitar():
     pass
         
 ##############################################################
-class setorMilitar():
-    pass
-        
-##############################################################
-class setorPrivado():
+class SetorPrivado():
     pass    
     
 ##############################################################
