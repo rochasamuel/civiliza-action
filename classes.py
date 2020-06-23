@@ -187,10 +187,32 @@ class Lider():
 
 ##############################################################
 class Acao():
-   pass
+    """
+        Classe que representa genericamente um ação
+    """
+    def __init__(self, nome, ator, nomePanorama):
+        """
+            :param nome: nome da ação (str)
+            :param ator: país ator da ação (Pais)
+            :param nomePanorama: nome do panorama a ser afetado (str)
+        """
+        self.nome = nome
+        self.ator = ator # Pais()
+        self.nomePanorama = nomePanorama
 
-    def fazerEfeito(self):
-        pass        
+    def fazerEfeito(self, alvo, fator):
+        """
+            Acessar o panorama correto do ator e aplicar o fator na relação com o alvo
+            :param alvo: país alvo da ação (Pais)
+            :param fator: fator que irá acrescentar ou subtrair na relação (float)
+        """
+        if self.ator == self.alvo:
+            raise Exception('Não inventa filho.')
+        
+        self.ator.setorEconomico.aReceber[alvo.nome] = valor
+        alvo.setorEconomico.aPagar[self.ator.nome] = valor
+
+        self.ator.mundo.panorama.alterarRelacao(self.ator, self.alvo, self.nomePanorama, self.fator)      
 
 ##############################################################
 class InteracaoFixa():
