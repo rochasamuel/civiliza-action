@@ -1,3 +1,8 @@
+import numpy as np
+import pandas as pd
+import random
+import math
+
 ##############################################################
 class Mundo():
     """
@@ -12,8 +17,7 @@ class Mundo():
         self.interacoesFixas = [] # Lista com os objetos interacaoFixa()
         self.panorama = None # Panorama() do mundo, com os três filhos
 
-    def testebranch():
-        pass
+    
     def paisesAleatorios(self, n_paises=None):
         """
             Método a ser usado para gerar interacaoFixa() aleatórias.
@@ -206,13 +210,13 @@ class Acao():
             :param alvo: país alvo da ação (Pais)
             :param fator: fator que irá acrescentar ou subtrair na relação (float)
         """
-        if self.ator == self.alvo:
+        if self.ator == alvo:
             raise Exception('Não inventa filho.')
         
-        self.ator.setorEconomico.aReceber[alvo.nome] = valor
-        alvo.setorEconomico.aPagar[self.ator.nome] = valor
+        self.ator.setorEconomico.aReceber[alvo.nome] = fator
+        alvo.setorEconomico.aPagar[self.ator.nome] = fator
 
-        self.ator.mundo.panorama.alterarRelacao(self.ator, self.alvo, self.nomePanorama, self.fator)      
+        self.ator.mundo.panorama.alterarRelacao(self.ator, alvo, self.nomePanorama, fator)      
 
 ##############################################################
 class InteracaoFixa():
