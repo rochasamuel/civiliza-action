@@ -216,31 +216,96 @@ class Acao():
 
 ##############################################################
 class InteracaoFixa():
-    pass
-
+    """
+        Classe que representa o esqueleto das interações fixas
+    """
+    def __init__(self, membros, inicio, vigencia, fator):
+        """
+            :param membros: membros da interações (list(Pais))
+            :param inicio: turno de inicio (int)
+            :param vigencia: quantos turnos irá durar (int)
+            :param fator: fator a ser aplicado na relação (float)
+        """
+        self.membros = membros
+        self.inicio = inicio
+        self.vigencia = vigencia
+        self.fator = fator
+        
     def fazerEfeito(self):
+        """
+            método a ser sobreescrito nas interações
+        """
         pass
     
 ##############################################################
 class InteracaoMilitar(InteracaoFixa):
-    pass
+    """
+        Classe que herda os atributos de InteraçãoFixa para representar uma interação militar
+    """
+    def __init__(self, membros, inicio, vigencia, fator):
+        """
+            atributos herdados de InteracaoFixa
+        """
+        super().__init__(membros, inicio, vigencia, fator)
         
     def fazerEfeito(self):
-        pass        
+        """
+            MÉTODO SOBREESCRITO
+            altera as relações entre os membros no panorama militar
+        """
+        panorama = 'militar'
+        for membro in self.membros:
+            for membro2 in self.membros:
+                if membro == membro2:
+                    continue
+                membro.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)       
 
 ##############################################################
 class InteracaoEconomica(InteracaoFixa):
-    pass
-
+    """
+        Classe que herda os atributos de InteraçãoFixa para representar uma interação economica
+    """
+    def __init__(self, membros, inicio, vigencia, fator):
+        """
+            atributos herdados de InteracaoFixa
+        """
+        super().__init__(membros, inicio, vigencia, fator)
+        
     def fazerEfeito(self):
-        pass
+        """
+            MÉTODO SOBREESCRITO
+            altera as relações entre os membros no panorama economico
+        """
+        panorama = 'economico'
+        for membro in self.membros:
+            for membro2 in self.membros:
+                if membro == membro2:
+                    continue
+                membro.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)
 
 ##############################################################
 class InteracaoPrivada(InteracaoFixa):
-    pass
-
+    """
+        Classe que herda os atributos de InteraçãoFixa para representar uma interação privada
+    """
+    def __init__(self, membros, inicio, vigencia, fator):
+        """
+            atributos herdados de InteracaoFixa
+        """
+        super().__init__(membros, inicio, vigencia, fator)
+    
     def fazerEfeito(self):
-        pass
+        """
+            MÉTODO SOBREESCRITO
+            altera as relações entre os membros no panorama privado
+        """
+        panorama = 'privado'
+        for membro in self.membros:
+            for membro2 in self.membros:
+                if membro == membro2:
+                    continue
+
+                membro.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)
 
 ##############################################################
 class Jogador(Pais):
