@@ -30,7 +30,19 @@ def createSetorMilitar():
     return setorMilitar(arsenal, tropa)
 
 def createSetorPrivado():
-    pass
+    """
+        Funcão que instancia um setor Privado
+        :return: uma instância de um SetorPrivado
+    """
+    produtos = ['P1','P2','P3','P4','P5']
+    
+    estoque  = pd.Series({prod:np.random.randint(100) for prod in produtos})
+    producao = pd.Series(np.random.randint(0,6,size = 5), index = produtos)
+    
+    importacao = pd.Series([0 for i in range(len(produtos))], index = produtos)
+    exportacao = pd.Series([0 for i in range(len(produtos))], index = produtos)
+    
+    return setorPrivado(estoque, producao, importacao, exportacao)
 
 def createLider():
     pass
