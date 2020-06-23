@@ -72,4 +72,18 @@ def createPais(nome, mundo):
         setorPrivado, lider, mundo)
    
 def createInteracaoFixa(mundo):
-    pass
+    """
+        Funcão que instancia uma InteracaoFixa
+        :param mundo: endereço para uma instância do mundo
+        :return: uma instância de uma InteracaoFixa
+    """
+    escolhida = random.choice([InteracaoMilitar, InteracaoPrivada, InteracaoEconomica])
+    paises = mundo.paisesAleatorios()
+    inicio = mundo.ano
+    vigencia = np.random.randint(1,20)
+    fator = np.random.rand()
+    
+    interacao = escolhida(paises, inicio, vigencia, fator)
+    mundo.interacoesFixas.append(interacao)
+    
+    return interacao
