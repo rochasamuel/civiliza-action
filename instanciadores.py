@@ -7,7 +7,14 @@ def random_string_generator(str_size):
     return ''.join(random.choice(string.ascii_letters) for x in range(str_size))
 
 def createSetorEconomico():
-    pass
+    """
+        Funcão que instancia um setor economico
+    """
+    return setorEconomico(
+        np.random.randint(50,100),
+        np.random.randint(10),
+        np.random.randint(10), 
+        0)
 
 def createSetorMilitar():
     pass
