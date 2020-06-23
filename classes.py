@@ -239,10 +239,26 @@ class InteracaoFixa():
     
 ##############################################################
 class InteracaoMilitar(InteracaoFixa):
-    pass
+    """
+        Classe que herda os atributos de InteraçãoFixa para representar uma interação militar
+    """
+    def __init__(self, membros, inicio, vigencia, fator):
+        """
+            atributos herdados de InteracaoFixa
+        """
+        super().__init__(membros, inicio, vigencia, fator)
         
     def fazerEfeito(self):
-        pass        
+        """
+            MÉTODO SOBREESCRITO
+            altera as relações entre os membros no panorama militar
+        """
+        panorama = 'militar'
+        for membro in self.membros:
+            for membro2 in self.membros:
+                if membro == membro2:
+                    continue
+                membro.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)       
 
 ##############################################################
 class InteracaoEconomica(InteracaoFixa):
