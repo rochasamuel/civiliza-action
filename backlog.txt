@@ -1,0 +1,3 @@
+Decorators para Ações
+Listar ações (4 por Panorama)
+Probabilidades de interação fixa, ação instantânea, lider mudar
