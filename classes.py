@@ -216,9 +216,25 @@ class Acao():
 
 ##############################################################
 class InteracaoFixa():
-    pass
-
+    """
+        Classe que representa o esqueleto das interações fixas
+    """
+    def __init__(self, membros, inicio, vigencia, fator):
+        """
+            :param membros: membros da interações (list(Pais))
+            :param inicio: turno de inicio (int)
+            :param vigencia: quantos turnos irá durar (int)
+            :param fator: fator a ser aplicado na relação (float)
+        """
+        self.membros = membros
+        self.inicio = inicio
+        self.vigencia = vigencia
+        self.fator = fator
+        
     def fazerEfeito(self):
+        """
+            método a ser sobreescrito nas interações
+        """
         pass
     
 ##############################################################
