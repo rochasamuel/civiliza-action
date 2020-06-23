@@ -148,7 +148,16 @@ class SetorEconomico():
         
 ##############################################################
 class SetorMilitar():
-    pass
+    """
+    Classe que comporta informações sobre o setor militar de um país
+    """
+    def __init__(self, arsenal, tropa):
+        """
+        :param arsenal: informações sobre o arsenal (dict)
+        :param tropa: informações sobre a tropa (dict)
+        """
+        self.arsenal = arsenal
+        self.tropa = tropa
         
 ##############################################################
 class SetorPrivado():
