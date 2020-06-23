@@ -1,5 +1,10 @@
 def random_string_generator(str_size):
-    pass
+    """
+        Função que gera uma string aleatória
+        :param str_size: tamanho da string
+        :return: retorna a string gerada
+    """
+    return ''.join(random.choice(string.ascii_letters) for x in range(str_size))
 
 def createSetorEconomico():
     pass
