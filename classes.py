@@ -41,10 +41,64 @@ class Mundo():
         
 ##############################################################
 class Panorama():
-    pass
+    """
+    Classe que representa os panoramas do Mundo, ou seja a relação de cada 
+    país com outro em cada esfera(Privada, Militar e Econômica)    
+    """
+    def __init__(self, mundo):
+        """
+        :param mundo: recebe o endereço de uma instância da classe Mundo (Mundo)
+        """
 
-    def testePanorama():
-        pass
+        # Teste para não ter países: raise alguma coisa
+        if len(mundo.paises) == 0:
+            # Exceção aqui
+            pass
+
+        listaDePaises = mundo.paises.keys()
+        n_paises = len(listaDePaises)
+
+        self.economico = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
+        self.privado = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
+        self.militar = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
+
+        self.geral = self.economico + self.privado + self.militar
+
+    def atualizarPanorama(self):
+        """
+        Função chamada para atualizar os valores do panorama geral
+        :return: retorna o panorama geral
+        """
+        self.geral = self.economico + self.privado + self.militar
+
+        return self.geral
+
+    def alterarRelacao(self, A, B, nomePanorama, fator):
+            """
+            Função chamada para alterar a relação de determinados países em determinado panorama 
+            :param A: Um dos países da relação (Pais)
+            :param B: Outro dos países da relação (Pais)
+            :param nomePanorama: indica qual o panorama a ser alterado (str)
+            :param fator: indica o fator que será adicionado ou subtraído na relação (float)
+            """
+
+        if nomePanorama == 'militar':
+            self.militar.loc[A, B] += fator
+            self.militar.loc[B, A] += fator
+
+            self.atualizarPanorama()
+
+        if nomePanorama == 'privado':
+            self.privado.loc[A, B] += fator
+            self.privado.loc[B, A] += fator
+
+            self.atualizarPanorama()
+
+        if nomePanorama == 'economico':
+            self.economico.loc[A, B] += fator
+            self.economico.loc[B, A] += fator
+
+            self.atualizarPanorama()
 
 ##############################################################
 class Pais():
