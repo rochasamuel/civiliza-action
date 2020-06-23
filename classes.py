@@ -109,17 +109,17 @@ class Pais():
     imigrantes, continente, 
     setorEconomico, setorMilitar, setorPrivado, 
     lider, mundo):
-    """
-        :param nome: Nome do país (str)
-        :param populacao: população do país (int)
-        :param imigrantes: quantidade de imigrantes (int) 
-        :param continente: continente em que o país se encontra (str)
-        :param setorEconomico: endereço para uma instância de classe com as características econômicas (SetorEconomico)
-        :param setorMilitar: endereço para uma instância de classe com as características econômicas (SetorMilitar)
-        :param setorPrivado: endereço para uma instância de classe com as características econômicas (SetorPrivado)
-        :param lider: endereço para uma instância de classe com as carcterística do líder (Lider)
-        :param mundo: enderço para uma instância da classe que representa o mundo (Mundo)
-    """
+        """
+            :param nome: Nome do país (str)
+            :param populacao: população do país (int)
+            :param imigrantes: quantidade de imigrantes (int) 
+            :param continente: continente em que o país se encontra (str)
+            :param setorEconomico: endereço para uma instância de classe com as características econômicas (SetorEconomico)
+            :param setorMilitar: endereço para uma instância de classe com as características econômicas (SetorMilitar)
+            :param setorPrivado: endereço para uma instância de classe com as características econômicas (SetorPrivado)
+            :param lider: endereço para uma instância de classe com as carcterística do líder (Lider)
+            :param mundo: enderço para uma instância da classe que representa o mundo (Mundo)
+        """
         self.nome = nome
         self.continente = continente
         self.setorEconomico = setorEconomico
