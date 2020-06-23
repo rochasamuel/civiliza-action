@@ -174,7 +174,16 @@ class SetorPrivado():
     
 ##############################################################
 class Lider():
-    pass    
+    """
+        Classe que representa um líder
+    """
+    def __init__(self, nome, orientacao):
+        """
+            :param nome: nome do líder (str)
+            :param orientacao: um numero inteiro [0 ou 1] representando a orientacao (int)
+        """
+        self.nome = nome
+        self.orientacao = orientacao   
 
 ##############################################################
 class Acao():
