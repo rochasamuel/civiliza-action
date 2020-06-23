@@ -1,3 +1,10 @@
+import pandas as pd
+import numpy as np
+import random
+import math
+import string
+from classes import *
+
 def random_string_generator(str_size):
     """
         Função que gera uma string aleatória

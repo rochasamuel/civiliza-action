@@ -29,7 +29,7 @@ def trocarAno():
         """
         pass
 
-    def provavilidaDeAcaoAleatoria():
+    def probavilidaDeAcaoAleatoria():
         """
         Implementa as regras de geração aleatória de ações entre os países
 
