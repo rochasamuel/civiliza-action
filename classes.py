@@ -285,10 +285,27 @@ class InteracaoEconomica(InteracaoFixa):
 
 ##############################################################
 class InteracaoPrivada(InteracaoFixa):
-    pass
-
+    """
+        Classe que herda os atributos de InteraçãoFixa para representar uma interação privada
+    """
+    def __init__(self, membros, inicio, vigencia, fator):
+        """
+            atributos herdados de InteracaoFixa
+        """
+        super().__init__(membros, inicio, vigencia, fator)
+    
     def fazerEfeito(self):
-        pass
+        """
+            MÉTODO SOBREESCRITO
+            altera as relações entre os membros no panorama privado
+        """
+        panorama = 'privado'
+        for membro in self.membros:
+            for membro2 in self.membros:
+                if membro == membro2:
+                    continue
+
+                membro.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)
 
 ##############################################################
 class Jogador(Pais):
