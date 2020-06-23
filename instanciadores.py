@@ -55,7 +55,21 @@ def createLider():
     return Lider(nome,orientacao)
 
 def createPais(nome, mundo):
-    pass
+    """
+        Funcão que instancia um Pais
+        :param nome: nome do país
+        :param mundo: endereço para a instância do mundo
+        :return: uma instância de um País
+    """
+    continente = random.choice(['C1','C2','C3'])
+        setorEconomico = createSetorEconomico()
+        setorMilitar = createSetorMilitar()
+        setorPrivado = createSetorPrivado()
+        lider = createLider()
+        
+        return Pais(nome, populacao, imigrantes, 
+        continente, setorEconomico, setorMilitar, 
+        setorPrivado, lider, mundo)
    
 def createInteracaoFixa(mundo):
     pass
