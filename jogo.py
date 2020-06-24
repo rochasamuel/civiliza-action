@@ -68,17 +68,18 @@ def trocarAno(mundo):
 
 
 
-def gerarObjetivos():
+def gerarObjetivos(jogador):
     """
     Concebe os objetivos macro do jogador: que números atingir ou evitar, com que países, etc.
     :return:
     """
-    pass
-
-def testarObjetivo():
-    """
-    Verifica se o objetivo ou as restrições foram atingidas.
-    :return:
-    """
+    alvo = random.choice(list(jogador.mundo.paises.keys()))
+    atual = jogador.mundo.panorama.geral.loc[jogador.nome,alvo.nome]
+    numObj = 2*atual
+    objetivo = f'Chegar a {numObj} com o país {alvo}'
+    def f(x):
+        return x >= numObj
+    jogador.cumpriuObjetivo=  f
+    jogador.strObjetivo = objetivo
 
     pass
