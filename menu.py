@@ -23,18 +23,6 @@ def menuPrincipal():
                 print('saihdjlksahdnkas')
                 break
 
-
-    if opcao == 2:
-        #Mostrar panorama
-        mundo.mostrarPanorama()
-
-    if opcao == 3:
-        #Passar o tempo
-        jogo.passarTurno(mundo)
-
-    if opcao == 9:
-        #Sair
-        break
             
             while opcao_acao != 9:
                 print('''
