@@ -423,8 +423,25 @@ class Lider():
             :param nome: nome do líder (str)
             :param orientacao: um numero inteiro [0 ou 1] representando a orientacao (int)
         """
-        self.nome = nome
-        self.orientacao = orientacao   
+        self.__nome = nome
+        self.__orientacao = orientacao   
+    
+    @property
+    def nome(self):
+        return self.__nome
+
+    @nome.setter
+    def nome(self, nome):
+        self.__nome = nome
+    
+    @property
+    def orientacao(self):
+        return self.__orientacao
+
+    @orientacao.setter
+    def orientacao(self, orientacao):
+        self.__orientacao = orientacao
+    
 
 ##############################################################
 class Acao():
