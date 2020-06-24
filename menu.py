@@ -1,7 +1,9 @@
 def menuPrincipal():
 
-    nome = str(input('Qual o seu nome?'))
+    nome = str(input('Qual o seu nome?\n'))
     #criacao jogador
+
+    print(f'Salve Salve {nome}!')
 
     opcao = 0
     cont_opcoes = 0
@@ -22,8 +24,6 @@ def menuPrincipal():
                 continue
 
             opcao_acao = 0
-            print(cont_opcoes)
-
             
             while opcao_acao != 9:
                 print('''
@@ -33,7 +33,7 @@ def menuPrincipal():
                 [9] - Retornar
                 ''')
                 
-                opcao_acao = int(input('Maneiro! Mas em qual setor?'))
+                opcao_acao = int(input('Maneiro! Mas em qual setor?\n'))
 
                 if opcao_acao == 1:
                     sub_opcao_acao = 0
@@ -45,11 +45,10 @@ def menuPrincipal():
                         [9] - Retornar
                         ''')
 
-                        sub_opcao_acao = int(input('Top! E qual ação?'))
+                        sub_opcao_acao = int(input('Top! E qual ação?\n'))
 
                         if sub_opcao_acao == 1:
                             cont_opcoes = 1
-                            print(cont_opcoes)
                             #fazer ação
                             break
                         
