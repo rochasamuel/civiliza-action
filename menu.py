@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import jogo
 
 nome = str(input('Qual o seu nome?'))
