@@ -1,3 +1,8 @@
+from instanciadores import *
+from classes import *
+import numpy as np
+
+
 """
 Necessidades do jogo
 
@@ -15,19 +20,38 @@ def mostrarMenu():
     :return:
     """
 
-def trocarAno():
+def atualizarInteracoesFixas(mundo):
     """
-    Passa o turno, e executa ações
-    :return:
+    Re-aplica o efeito das interações fixas do mundo.
+    :param mundo: objeto Mundo()
+    :return: None
     """
-    pass
 
-    def probabilidadeDeInteracaoFixa():
+    for interacao in mundo.interacoesFixas:
+        if interacao.inicio == mundo.dia:
+            interacao.fazerEfeito()
+    for interacao in mundo.interacoesFixas:
+        if interacao.vigencia
+
+
+
+    def probabilidadeDeInteracaoFixa(mundo):
         """
         Implementa as regras de geração aleatória de interaçãoFixa
         :return:
         """
         pass
+
+
+def trocarAno(mundo):
+    """
+    Passa o turno, e executa ações
+    :return:
+    """
+
+    # Chama função de gerações aleatórias
+    mundo.ano += 1
+
 
     def probavilidaDeAcaoAleatoria():
         """
