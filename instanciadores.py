@@ -85,7 +85,7 @@ def createInteracaoFixa(mundo):
         :return: uma instância de uma InteracaoFixa
     """
     escolhida = random.choice([InteracaoMilitar, InteracaoPrivada, InteracaoEconomica])
-    paises = mundo.paisesAleatorios()
+    paises = mundo.paisesAleatorios() # Remover jogador desse conjunto
     inicio = mundo.ano
     vigencia = np.random.randint(1,20)
     fator = np.random.rand()
@@ -94,3 +94,17 @@ def createInteracaoFixa(mundo):
     mundo.interacoesFixas.append(interacao)
     
     return interacao
+
+
+def createAcaoAleatoria(mundo):
+    """
+    Cria e executa ação aleatória
+    :param mundo:
+    :return:
+    """
+    ator = random.choice(mundo.paises)
+    alvo = random.choice(mundo.paises)
+    fator = np.random.rand()
+    nomePanorama = random.choice(['militar','privado','economico'])
+    AcaoAleatoria = Acao('Acao Repentina',ator, nomePanorama)
+    AcaoAleatoria.fazerEfeito(alvo, fator)
