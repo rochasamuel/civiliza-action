@@ -11,11 +11,52 @@ class Mundo():
         """
             A classe é instanciada sem nenhum atributo porque eles são instaciados depois, recebendo Mundo() como attr.
         """
-        self.paises = {} # é um dicionário no formato {'nome_pais':Pais()}
-        self.ano = 1 # Variável de contagem de turnos
-        self.interacoesFixas = [] # Lista com os objetos interacaoFixa()
-        self.panorama = None # Panorama() do mundo, com os três filhos
-        self.jogador = None
+        self.__paises = {} # é um dicionário no formato {'nome_pais':Pais()}
+        self.__ano = 1 # Variável de contagem de turnos
+        self.__interacoesFixas = [] # Lista com os objetos interacaoFixa()
+        self.__panorama = None # Panorama() do mundo, com os três filhos
+        self.__jogador = None
+
+    @property
+    def paises(self):
+        return self.__paises
+        
+    @paises.setter
+    def paises(self, paises):
+        self.__paises = paises
+
+    @property
+    def ano(self):
+        return self.__ano
+
+    @ano.setter
+    def ano(self, ano):
+        self.__ano = ano
+
+    @property
+    def interacoesFixas(self):
+        return self.__interacoesFixas
+
+    @interacoesFixas.setter
+    def interacoesFixas(self, interacoesFixas):
+        self.__interacoesFixas = interacoesFixas
+    
+    @property
+    def panorama(self):
+        return self.__panorama
+
+    @panorama.setter
+    def panorama(self, panorama):
+        self.__panorama = panorama
+
+    @property
+    def jogador(self):
+        return self.__jogador
+
+    @jogador.setter
+    def jogador(self, jogador):
+        self.__jogador = jogador
+    
 
     
     def paisesAleatorios(self, n_paises=None):
