@@ -17,10 +17,10 @@ def atualizarInteracoesFixas(mundo):
     """
 
     for interacao in mundo.interacoesFixas:
-        if interacao.inicio == mundo.dia:
+        if interacao.inicio == mundo.ano:
             interacao.fazerEfeito()
     for interacao in mundo.interacoesFixas:
-        if interacao.inicio + interacao.vigencia == mundo.dia:
+        if interacao.inicio + interacao.vigencia == mundo.ano:
             interacao.fazerEfeito(desfazer = True)
 
 def probabilidadeDeInteracaoFixa(mundo):
@@ -132,13 +132,14 @@ def menuPrincipal(mundo):
                 print('Tá querendo hackear??')
                 continue
 
-            lista_de_paises = [p.lower() for p in mundo.paises.keys()]
+            lista_de_paises = [p for p in mundo.paises.keys()]
 
             # Pedir pra escolher alvo
             alvo = 'Nenhuma'
             while alvo not in lista_de_paises:
-                alvo = (input(f'Dos seguintes paises:\n{lista_de_paises}\nDigite exatamente o seu alvo.\n')).lower()
+                alvo = (input(f'Dos seguintes paises:\n{lista_de_paises}\nDigite exatamente o seu alvo.\n'))
 
+            alvo = mundo.paises[alvo]
             fator = np.random.rand()
 
             opcao_acao = 0
@@ -240,6 +241,7 @@ def menuPrincipal(mundo):
 
         if opcao == 3:
             # Passar o tempo
+            cont_opcoes = 0
             passarTurno(mundo)
 
         if opcao == 9:
