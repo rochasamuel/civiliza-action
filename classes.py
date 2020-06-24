@@ -42,6 +42,11 @@ class Mundo():
         nomesAleatorios = {pais: self.paises[pais] for pais in nomesAleatorios}
 
         return nomesAleatorios
+
+    def mostrarPanorama(self):
+
+        print(self.panorama.geral)
+
         
 ##############################################################
 class Panorama():

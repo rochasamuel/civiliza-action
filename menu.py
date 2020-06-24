@@ -1,3 +1,5 @@
+import jogo
+
 nome = str(input('Qual o seu nome?'))
 #criacao jogador
 
@@ -103,11 +105,11 @@ while opcao != 9:
 
     if opcao == 2:
         #Mostrar panorama
-        pass
+        mundo.mostrarPanorama()
 
     if opcao == 3:
         #Passar o tempo
-        pass
+        jogo.passarTurno(mundo)
 
     if opcao == 9:
         #Sair
