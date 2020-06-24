@@ -153,8 +153,14 @@ class Jogador(Pais):
                                'Privado':{'P1':Acao('Acao P1',self,'privado'),
                                             'P2':Acao('Acao P2',self, 'privado')}}
         self.mundo.jogador = self
-        self.cumpriuObjetivo = None
-        self.strObjetivo = None
+        self.objetivo = None
+
+
+    def cumpriuObjetivo(self):
+        obj = self.objetivo
+        if obj is None:
+            Exception('Não tem objetivo ainda')
+        return self.mundo.panorama.geral.loc[self.nome,obj['alvo']] >= obj['valor']
 ##############################################################
 class SetorEconomico():
     """

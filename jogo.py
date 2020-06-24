@@ -76,10 +76,5 @@ def gerarObjetivos(jogador):
     alvo = random.choice(list(jogador.mundo.paises.keys()))
     atual = jogador.mundo.panorama.geral.loc[jogador.nome,alvo.nome]
     numObj = 2*atual
-    objetivo = f'Chegar a {numObj} com o país {alvo}'
-    def f(x):
-        return x >= numObj
-    jogador.cumpriuObjetivo=  f
-    jogador.strObjetivo = objetivo
-
-    pass
+    return {'alvo':alvo,
+            'valor':numObj}
