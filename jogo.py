@@ -195,12 +195,12 @@ def menuPrincipal(mundo):
                         if sub_opcao_acao == 1:
                             cont_opcoes = 1
                             jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
-                            pass
+                            break
 
                         if sub_opcao_acao == 2:
                             cont_opcoes = 1
                             jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
-                            pass
+                            break
 
                         if sub_opcao_acao == 9:
                             break
@@ -221,12 +221,12 @@ def menuPrincipal(mundo):
                         if sub_opcao_acao == 1:
                             cont_opcoes = 1
                             jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
-                            pass
+                            break
 
                         if sub_opcao_acao == 2:
                             cont_opcoes = 1
                             jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
-                            pass
+                            break
 
                         if sub_opcao_acao == 9:
                             break
