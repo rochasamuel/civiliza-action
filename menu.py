@@ -4,6 +4,7 @@ def menuPrincipal():
     #criacao jogador
 
     opcao = 0
+    cont_opcoes = 0
 
     while opcao != 9: 
         print('''
@@ -16,12 +17,12 @@ def menuPrincipal():
         opcao = int(input('O que você quer fazer?\n'))
 
         if opcao == 1:
-            opcao_acao = 0
-            cont_opcoes = 0
+            if cont_opcoes == 1:
+                print('Tá querendo hackear??')
+                continue
 
-            if cont_opcoes >= 1:
-                print('saihdjlksahdnkas')
-                break
+            opcao_acao = 0
+            print(cont_opcoes)
 
             
             while opcao_acao != 9:
@@ -47,12 +48,13 @@ def menuPrincipal():
                         sub_opcao_acao = int(input('Top! E qual ação?'))
 
                         if sub_opcao_acao == 1:
-                            cont_opcoes += 1
+                            cont_opcoes = 1
+                            print(cont_opcoes)
                             #fazer ação
                             break
                         
                         if sub_opcao_acao == 2:
-                            cont_opcoes += 1
+                            cont_opcoes = 1
                             #fazer ação
                             break
                         
@@ -73,12 +75,12 @@ def menuPrincipal():
                         sub_opcao_acao = int(input('Top! E qual ação?'))
 
                         if sub_opcao_acao == 1:
-                            cont_opcoes += 1
+                            cont_opcoes = 1
                             #fazer ação
                             pass
 
                         if sub_opcao_acao == 2:
-                            cont_opcoes += 1
+                            cont_opcoes = 1
                             #fazer ação
                             pass
 
@@ -99,12 +101,12 @@ def menuPrincipal():
                         sub_opcao_acao = int(input('Top! E qual ação?'))
 
                         if sub_opcao_acao == 1:
-                            cont_opcoes += 1
+                            cont_opcoes = 1
                             #fazer ação
                             pass
 
                         if sub_opcao_acao == 2:
-                            cont_opcoes += 1
+                            cont_opcoes = 1
                             #fazer ação
                             pass
 
