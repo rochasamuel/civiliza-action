@@ -282,7 +282,7 @@ class Jogador(Pais):
         super().__init__(nome, continente,
     setorEconomico, setorMilitar, setorPrivado,
     lider, mundo)
-        self.acoesDeJogador = {1:{1:Acao('Acao A1',self,'economico'),
+        self.__acoesDeJogador = {1:{1:Acao('Acao A1',self,'economico'),
                                             2:Acao('Acao A2',self, 'economico')},
                                2:{1:Acao('Acao M1',self,'militar'),
                                             2:Acao('Acao M2',self, 'militar')},
@@ -290,6 +290,14 @@ class Jogador(Pais):
                                             2:Acao('Acao P2',self, 'privado')}}
         self.mundo.jogador = self
         self.objetivo = None
+
+    @property
+    def acoesDeJogador(self):
+       return self.__acoesDeJogador
+
+    @acoesDeJogador.setter
+    def acoesDeJogador(self, acoesDeJogador):
+        self.__acoesDeJogador = acoesDeJogador
 
 
     def cumpriuObjetivo(self):
