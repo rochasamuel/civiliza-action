@@ -316,11 +316,43 @@ class SetorEconomico():
             :param limite_aReceber: limite de investimento que um pais pode receber (float)
             :param limite_aPagar: limite de investimento que um pais pode dar (float)
         """
-        self.limite_aReceber = limite_aReceber
-        self.limite_aPagar = limite_aPagar
+        self.__limite_aReceber = limite_aReceber
+        self.__limite_aPagar = limite_aPagar
         
-        self.aPagar = pd.Series(dtype = float)
-        self.aReceber = pd.Series(dtype = float)
+        self.__aPagar = pd.Series(dtype = float)
+        self.__aReceber = pd.Series(dtype = float)
+
+    @property
+    def limite_aPagar(self):
+        return self.__limite_aPagar
+
+    @limite_aPagar.setter
+    def limite_aPagar(self, limite_aPagar):
+        self.__limite_aPagar = limite_aPagar
+
+    @property
+    def limite_aReceber(self):
+        return self.__limite_aReceber
+
+    @limite_aReceber.setter
+    def limite_aReceber(self, limite_aReceber):
+        self.__limite_aReceber = limite_aReceber
+
+    @property
+    def aPagar(self):
+        return self.__aPagar
+
+    @aPagar.setter
+    def aPagar(self, aPagar):
+        self.__aPagar = aPagar
+
+    @property
+    def aReceber(self):
+        return self.__aReceber
+
+    @aReceber.setter
+    def aReceber(self, aReceber):
+        self.__aReceber = aReceber
         
 ##############################################################
 class SetorMilitar():
@@ -332,8 +364,24 @@ class SetorMilitar():
             :param arsenal: informações sobre o arsenal (dict)
             :param tropa: informações sobre a tropa (dict)
         """
-        self.arsenal = arsenal
-        self.tropa = tropa
+        self.__arsenal = arsenal
+        self.__tropa = tropa
+
+    @property
+    def arsenal(self):
+        return self.__arsenal
+
+    @arsenal.setter
+    def arsenal(self, arsenal):
+        self.__arsenal = arsenal
+
+    @property
+    def tropa(self):
+        return self.__tropa
+
+    @tropa.setter
+    def tropa(self, tropa):
+        self.__tropa = tropa
         
 ##############################################################
 class SetorPrivado():
@@ -345,8 +393,25 @@ class SetorPrivado():
             :param exportacao: lista de países para quem o país exporta (list(Pais))
             :param importacao: lista de países para quem o país importa (list(Pais))
         """
-        self.exportacao = exportacao # Lista de Países
-        self.importacao = importacao # Lista de Países   
+        self.__exportacao = exportacao # Lista de Países
+        self.__importacao = importacao # Lista de Países   
+
+    
+    @property
+    def exportacao(self):
+        return self.__exportacao
+
+    @exportacao.setter
+    def exportacao(self, exportacao):
+        self.__exportacao = exportacao
+    
+    @property
+    def importacao(self):
+        return self.__importacao
+
+    @importacao.setter
+    def importacao(self, importacao):
+        self.__importacao = importacao
     
 ##############################################################
 class Lider():
