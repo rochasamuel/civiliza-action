@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import random
 
-##############################################################
+###############################################################
 class Mundo():
     """
         Classe onde todos os outros objetos vão residir. Vai ser usada majoritariamente como um hub de informações.
