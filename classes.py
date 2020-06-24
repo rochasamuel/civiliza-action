@@ -153,6 +153,8 @@ class Jogador(Pais):
                                'Privado':{'P1':Acao('Acao P1',self,'privado'),
                                             'P2':Acao('Acao P2',self, 'privado')}}
         self.mundo.jogador = self
+        self.cumpriuObjetivo = None
+        self.strObjetivo = None
 ##############################################################
 class SetorEconomico():
     """
