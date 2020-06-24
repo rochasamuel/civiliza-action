@@ -454,10 +454,35 @@ class Acao():
             :param ator: país ator da ação (Pais)
             :param nomePanorama: nome do panorama a ser afetado (str)
         """
-        self.nome = nome
-        self.ator = ator # Pais()
-        self.nomePanorama = nomePanorama
+        self.__nome = nome
+        self.__ator = ator # Pais()
+        self.__nomePanorama = nomePanorama
         print(f'Criei acao {self.nome}!')
+    
+    @property
+    def nome(self):
+        return self.__nome
+
+    @nome.setter
+    def nome(self, nome):
+        self.__nome = nome
+        
+    @property
+    def ator(self):
+        return self.__ator
+
+    @ator.setter
+    def ator(self, ator):
+        self.__ator = ator
+        
+    @property
+    def nomePanorama(self):
+        return self.__nomePanorama
+
+    @nomePanorama.setter
+    def nomePanorama(self, nomePanorama):
+        self.__nomePanorama = nomePanorama
+    
 
     def fazerEfeito(self, alvo, fator):
         """
