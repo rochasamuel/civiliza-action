@@ -265,15 +265,14 @@ class InteracaoMilitar(InteracaoFixa):
     """
         Classe que herda os atributos de InteraçãoFixa para representar uma interação militar
     """
-    def __init__(self, membros, inicio, vigencia, fator, desfazer = False):
+    def __init__(self, membros, inicio, vigencia, fator):
         """
             atributos herdados de InteracaoFixa
             :param desfazer: identifica se a interação vai ser revertida ou não
         """
-        self.desfazer = desfazer
         super().__init__(membros, inicio, vigencia, fator)
         
-    def fazerEfeito(self):
+    def fazerEfeito(self, desfazer = False):
         """
             MÉTODO SOBREESCRITO
             altera as relações entre os membros no panorama militar
@@ -282,7 +281,7 @@ class InteracaoMilitar(InteracaoFixa):
         for membro in self.membros:
             for membro2 in self.membros:
                 if membro == membro2:
-                    if self.desfazer == True:
+                    if desfazer == True:
                         self.fator = (self.fator * -1)
                     continue
                 membro.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)       
@@ -292,14 +291,13 @@ class InteracaoEconomica(InteracaoFixa):
     """
         Classe que herda os atributos de InteraçãoFixa para representar uma interação economica
     """
-    def __init__(self, membros, inicio, vigencia, fator, desfazer = False):
+    def __init__(self, membros, inicio, vigencia, fator):
         """
             atributos herdados de InteracaoFixa
         """
-        self.desfazer = desfazer
         super().__init__(membros, inicio, vigencia, fator)
         
-    def fazerEfeito(self):
+    def fazerEfeito(self, desfazer = False):
         """
             MÉTODO SOBREESCRITO
             altera as relações entre os membros no panorama economico
@@ -308,7 +306,7 @@ class InteracaoEconomica(InteracaoFixa):
         for membro in self.membros:
             for membro2 in self.membros:
                 if membro == membro2:
-                    if self.desfazer == True:
+                    if desfazer == True:
                         self.fator = (self.fator * -1)
                     continue
                 membro.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)
@@ -318,14 +316,13 @@ class InteracaoPrivada(InteracaoFixa):
     """
         Classe que herda os atributos de InteraçãoFixa para representar uma interação privada
     """
-    def __init__(self, membros, inicio, vigencia, fator, desfazer = False):
+    def __init__(self, membros, inicio, vigencia, fator):
         """
             atributos herdados de InteracaoFixa
         """
-        self.desfazer = desfazer
         super().__init__(membros, inicio, vigencia, fator)
     
-    def fazerEfeito(self):
+    def fazerEfeito(self, desfazer = False):
         """
             MÉTODO SOBREESCRITO
             altera as relações entre os membros no panorama privado
@@ -334,7 +331,7 @@ class InteracaoPrivada(InteracaoFixa):
         for membro in self.membros:
             for membro2 in self.membros:
                 if membro == membro2:
-                    if self.desfazer == True:
+                    if desfazer == True:
                         self.fator = (self.fator * -1)
                     continue
 
