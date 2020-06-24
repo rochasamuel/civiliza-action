@@ -99,7 +99,6 @@ class Panorama():
         """
             :param mundo: recebe o endereço de uma instância da classe Mundo (Mundo)
         """
-
         # Teste para não ter países: raise alguma coisa
         if len(mundo.paises) == 0:
             # Exceção aqui
@@ -108,11 +107,44 @@ class Panorama():
         listaDePaises = mundo.paises.keys()
         n_paises = len(listaDePaises)
 
-        self.economico = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
-        self.privado = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
-        self.militar = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
+        self.__economico = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
+        self.__privado = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
+        self.__militar = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
 
-        self.geral = self.economico + self.privado + self.militar
+        self.__geral = self.__economico + self.__privado + self.__militar
+
+    @property
+    def economico(self):
+        return self.__economico
+
+    @economico.setter
+    def economico(self, economico):
+        self.__economico = economico
+
+    @property
+    def privado(self):
+        return self.__privado
+
+    @privado.setter
+    def privado(self, privado):
+        self.__privado = privado
+
+    @property
+    def militar(self):
+        return self.__militar
+
+    @militar.setter
+    def militar(self, militar):
+        self.__militar = militar
+
+    @property
+    def geral(self):
+        return self.__geral
+
+    @geral.setter
+    def geral(self, geral):
+        self.__geral = geral
+
 
     def atualizarPanorama(self):
         """
