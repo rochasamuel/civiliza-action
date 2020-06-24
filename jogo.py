@@ -45,7 +45,7 @@ def probabilidadeDeInteracaoFixa(mundo):
         createInteracaoFixa(mundo)
         dado = np.random.rand()
 
-def probavilidaDeAcaoAleatoria(mundo):
+def probabilidaDeAcaoAleatoria(mundo):
     """
     Implementa as regras de geração aleatória de ações entre os países
 
@@ -79,3 +79,15 @@ def gerarObjetivos(jogador):
     numObj = 2*atual
     return {'alvo':alvo,
             'valor':numObj}
+
+
+def passarTurno(mundo):
+    """
+    Chama deus e o mundo (literalmente)
+    :param mundo:
+    :return:
+    """
+    probabilidadeDeInteracaoFixa(mundo)
+    probabilidaDeAcaoAleatoria(mundo)
+    atualizarInteracoesFixas(mundo)
+    trocarAno(mundo)
