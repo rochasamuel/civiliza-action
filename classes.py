@@ -150,12 +150,12 @@ class Jogador(Pais):
         super().__init__(nome, continente,
     setorEconomico, setorMilitar, setorPrivado,
     lider, mundo)
-        self.acoesDeJogador = {'Economica':{'E1':Acao('Acao A1',self,'economico'),
-                                            'E2':Acao('Acao A2',self, 'economico')},
-                               'Militar':{'M1':Acao('Acao M1',self,'militar'),
-                                            'M2':Acao('Acao M2',self, 'militar')},
-                               'Privado':{'P1':Acao('Acao P1',self,'privado'),
-                                            'P2':Acao('Acao P2',self, 'privado')}}
+        self.acoesDeJogador = {1:{1:Acao('Acao A1',self,'economico'),
+                                            2:Acao('Acao A2',self, 'economico')},
+                               2:{1:Acao('Acao M1',self,'militar'),
+                                            2:Acao('Acao M2',self, 'militar')},
+                               3:{1:Acao('Acao P1',self,'privado'),
+                                            2:Acao('Acao P2',self, 'privado')}}
         self.mundo.jogador = self
         self.objetivo = None
 

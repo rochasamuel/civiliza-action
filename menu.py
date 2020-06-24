@@ -1,9 +1,23 @@
-def menuPrincipal():
+import jogo
+import classes
+import instanciadores as inst
+import numpy as np
+
+def menuPrincipal(mundo):
 
     nome = str(input('Qual o seu nome?\n'))
     #criacao jogador
 
+    jogador = classes.Jogador(nome, 'C1',
+                              inst.createSetorEconomico,
+                              inst.createSetorMilitar,
+                              inst.createSetorPrivado,
+                              inst.createLider,
+                              mundo)
+
     print(f'Salve Salve {nome}!')
+
+    jogo.prepararMundo(mundo)
 
     opcao = 0
     cont_opcoes = 0
@@ -22,6 +36,15 @@ def menuPrincipal():
             if cont_opcoes == 1:
                 print('Tá querendo hackear??')
                 continue
+
+            lista_de_paises = [p.lower() for p in mundo.paises.keys()]
+
+            # Pedir pra escolher alvo
+            alvo = 'Nenhuma'
+            while alvo not in lista_de_paises:
+                alvo = (input(f'Dos seguintes paises:\n{lista_de_paises}\nDigite exatamente o seu alvo.\n')).lower()
+
+            fator = np.random.rand()
 
             opcao_acao = 0
             
@@ -49,12 +72,12 @@ def menuPrincipal():
 
                         if sub_opcao_acao == 1:
                             cont_opcoes = 1
-                            #fazer ação
+                            jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
                             break
                         
                         if sub_opcao_acao == 2:
                             cont_opcoes = 1
-                            #fazer ação
+                            jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
                             break
                         
                         if sub_opcao_acao == 9:
@@ -75,12 +98,12 @@ def menuPrincipal():
 
                         if sub_opcao_acao == 1:
                             cont_opcoes = 1
-                            #fazer ação
+                            jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
                             pass
 
                         if sub_opcao_acao == 2:
                             cont_opcoes = 1
-                            #fazer ação
+                            jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
                             pass
 
                         if sub_opcao_acao == 9:
@@ -101,12 +124,12 @@ def menuPrincipal():
 
                         if sub_opcao_acao == 1:
                             cont_opcoes = 1
-                            #fazer ação
+                            jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
                             pass
 
                         if sub_opcao_acao == 2:
                             cont_opcoes = 1
-                            #fazer ação
+                            jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
                             pass
 
                         if sub_opcao_acao == 9:
