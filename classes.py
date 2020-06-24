@@ -16,6 +16,7 @@ class Mundo():
         self.ano = 1 # Variável de contagem de turnos
         self.interacoesFixas = [] # Lista com os objetos interacaoFixa()
         self.panorama = None # Panorama() do mundo, com os três filhos
+        self.jogador = None
 
     
     def paisesAleatorios(self, n_paises=None):
@@ -109,8 +110,7 @@ class Pais():
     """
         Classe que representa um país. Será atribuido a um jogador
     """
-    def __init__(self, nome, populacao, 
-    imigrantes, continente, 
+    def __init__(self, nome, continente,
     setorEconomico, setorMilitar, setorPrivado, 
     lider, mundo):
         """
@@ -133,7 +133,26 @@ class Pais():
         self.mundo = mundo
 
         self.mundo.paises[self.nome] = self #se adiciona na lista de países do mundo
-        
+
+##############################################################
+
+class Jogador(Pais):
+    """
+    Pais 'superpoderoso', com os métodos de jogador
+    """
+    def __init__(self, nome, continente,
+    setorEconomico, setorMilitar, setorPrivado,
+    lider, mundo):
+        super().__init__(nome, continente,
+    setorEconomico, setorMilitar, setorPrivado,
+    lider, mundo)
+        self.acoesDeJogador = {'Economica':{'E1':Acao('Acao A1',self,'economico'),
+                                            'E2':Acao('Acao A2',self, 'economico')},
+                               'Militar':{'M1':Acao('Acao M1',self,'militar'),
+                                            'M2':Acao('Acao M2',self, 'militar')},
+                               'Privado':{'P1':Acao('Acao P1',self,'privado'),
+                                            'P2':Acao('Acao P2',self, 'privado')}}
+        self.mundo.jogador = self
 ##############################################################
 class SetorEconomico():
     """
@@ -322,5 +341,3 @@ class InteracaoPrivada(InteracaoFixa):
                 membro.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)
 
 ##############################################################
-class Jogador(Pais):
-    pass
