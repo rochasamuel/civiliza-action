@@ -1,5 +1,5 @@
 from instanciadores import *
-from classes import *
+from elementos import *
 import numpy as np
 import random
 

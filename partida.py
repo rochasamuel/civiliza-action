@@ -1,4 +1,4 @@
-from classes import *
+from elementos import *
 from instanciadores import *
 from jogo import *
 

@@ -35,7 +35,7 @@ class Mundo():
         nomesAleatorios = set()
 
         while len(nomesAleatorios) < n_paises:
-            nomesAleatorios.add(random.choice(self.paises.keys()))
+            nomesAleatorios.add(random.choice([x for x in self.paises.keys()]))
 
         nomesAleatorios = sorted(list(nomesAleatorios))
 
@@ -92,20 +92,20 @@ class Panorama():
         """
 
         if nomePanorama == 'militar':
-            self.militar.loc[A, B] += fator
-            self.militar.loc[B, A] += fator
+            self.militar.loc[A, B] = self.militar.loc[A, B] + fator
+            self.militar.loc[B, A] = self.militar.loc[B, A] + fator
 
             self.atualizarPanorama()
 
         if nomePanorama == 'privado':
-            self.privado.loc[A, B] += fator
-            self.privado.loc[B, A] += fator
+            self.privado.loc[A, B] = self.privado.loc[A, B] + fator
+            self.privado.loc[B, A] = self.privado.loc[B,A] + fator
 
             self.atualizarPanorama()
 
         if nomePanorama == 'economico':
-            self.economico.loc[A, B] += fator
-            self.economico.loc[B, A] += fator
+            self.economico.loc[A, B] = self.economico.loc[A, B] + fator
+            self.economico.loc[B, A] = self.economico.loc[B,A] + fator
 
             self.atualizarPanorama()
 
@@ -163,7 +163,8 @@ class Jogador(Pais):
     def cumpriuObjetivo(self):
         obj = self.objetivo
         if obj is None:
-            Exception('Não tem objetivo ainda')
+            raise Exception('Não tem objetivo ainda')
+            return
         return self.mundo.panorama.geral.loc[self.nome,obj['alvo']] >= obj['valor']
 ##############################################################
 class SetorEconomico():
