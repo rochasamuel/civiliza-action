@@ -515,14 +515,55 @@ class InteracaoFixa():
             :param vigencia: quantos turnos irá durar (int)
             :param fator: fator a ser aplicado na relação (float)
         """
-        self.membros = membros
-        self.inicio = inicio
-        self.vigencia = vigencia
-        self.fator = fator
+        self.__membros = membros
+        self.__inicio = inicio
+        self.__vigencia = vigencia
+        self.__fator = fator
 
         random_member = membros[[p for p in membros.keys()][0]]
 
-        self.mundo = random_member.mundo
+        self.__mundo = random_member.mundo
+    
+    
+    @property
+    def membros(self):
+        return self.__membros
+
+    @membros.setter
+    def membros(self, membros):
+        self.__membros = membros
+        
+    @property
+    def inicio(self):
+        return self.__inicio
+
+    @inicio.setter
+    def inicio(self, inicio):
+        self.__inicio = inicio
+        
+    @property
+    def vigencia(self):
+        return self.__vigencia
+
+    @vigencia.setter
+    def vigencia(self, vigencia):
+        self.__vigencia = vigencia
+        
+    @property
+    def fator(self):
+        return self.__fator
+
+    @fator.setter
+    def fator(self, fator):
+        self.__fator = fator
+        
+    @property
+    def mundo(self):
+        return self.__mundo
+
+    @mundo.setter
+    def mundo(self, mundo):
+        self.__mundo = mundo
         
     def fazerEfeito(self):
         """
