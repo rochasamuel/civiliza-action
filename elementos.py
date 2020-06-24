@@ -92,20 +92,20 @@ class Panorama():
         """
 
         if nomePanorama == 'militar':
-            self.militar.loc[A, B] = self.militar.loc[A, B] + fator
-            self.militar.loc[B, A] = self.militar.loc[B, A] + fator
+            self.militar.loc[A.nome, B.nome] = self.militar.loc[A.nome, B.nome] + fator
+            self.militar.loc[B.nome, A.nome] = self.militar.loc[B.nome, A.nome] + fator
 
             self.atualizarPanorama()
 
         if nomePanorama == 'privado':
-            self.privado.loc[A, B] = self.privado.loc[A, B] + fator
-            self.privado.loc[B, A] = self.privado.loc[B,A] + fator
+            self.privado.loc[A.nome, B.nome] = self.privado.loc[A.nome, B.nome] + fator
+            self.privado.loc[B.nome, A.nome] = self.privado.loc[B.nome,A.nome] + fator
 
             self.atualizarPanorama()
 
         if nomePanorama == 'economico':
-            self.economico.loc[A, B] = self.economico.loc[A, B] + fator
-            self.economico.loc[B, A] = self.economico.loc[B,A] + fator
+            self.economico.loc[A.nome, B.nome] = self.economico.loc[A.nome, B.nome] + fator
+            self.economico.loc[B.nome, A.nome] = self.economico.loc[B.nome,A.nome] + fator
 
             self.atualizarPanorama()
 
@@ -135,6 +135,8 @@ class Pais():
         self.setorPrivado = setorPrivado
         self.lider = lider
         self.mundo = mundo
+
+        print(f'Criei o pais {nome}')
 
         self.mundo.paises[self.nome] = self #se adiciona na lista de países do mundo
 
@@ -235,6 +237,7 @@ class Acao():
         self.nome = nome
         self.ator = ator # Pais()
         self.nomePanorama = nomePanorama
+        print(f'Criei acao {self.nome}!')
 
     def fazerEfeito(self, alvo, fator):
         """
@@ -242,11 +245,16 @@ class Acao():
             :param alvo: país alvo da ação (Pais)
             :param fator: fator que irá acrescentar ou subtrair na relação (float)
         """
+        print(f'Entre fazerEfeitoi')
+        print(f'meu ator: {self.ator}')
+        print(f'meu alvo: {alvo}')
+
         if self.ator == alvo:
             raise Exception('Não inventa filho.')
-        
-        self.ator.setorEconomico.aReceber[alvo.nome] = fator
-        alvo.setorEconomico.aPagar[self.ator.nome] = fator
+
+        print(self.ator.setorEconomico)
+        # self.ator.setorEconomico.aReceber[alvo.nome] = fator
+        # alvo.setorEconomico.aPagar[self.ator.nome] = fator
 
         self.ator.mundo.panorama.alterarRelacao(self.ator, alvo, self.nomePanorama, fator)      
 
@@ -266,6 +274,10 @@ class InteracaoFixa():
         self.inicio = inicio
         self.vigencia = vigencia
         self.fator = fator
+
+        random_member = membros[[p for p in membros.keys()][0]]
+
+        self.mundo = random_member.mundo
         
     def fazerEfeito(self):
         """
@@ -290,14 +302,17 @@ class InteracaoMilitar(InteracaoFixa):
             MÉTODO SOBREESCRITO
             altera as relações entre os membros no panorama militar
         """
+
+        print(f"TIPO : {type(self.membros)}")
+
         panorama = 'militar'
-        for membro in self.membros:
-            for membro2 in self.membros:
+        for membro in self.membros.values():
+            for membro2 in self.membros.values():
                 if membro == membro2:
                     if desfazer == True:
                         self.fator = (self.fator * -1)
                     continue
-                membro.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)       
+                self.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)
 
 ##############################################################
 class InteracaoEconomica(InteracaoFixa):
@@ -315,14 +330,17 @@ class InteracaoEconomica(InteracaoFixa):
             MÉTODO SOBREESCRITO
             altera as relações entre os membros no panorama economico
         """
+
+        print(f"TIPO : {type(self.membros)}")
+
         panorama = 'economico'
-        for membro in self.membros:
-            for membro2 in self.membros:
+        for membro in self.membros.values():
+            for membro2 in self.membros.values():
                 if membro == membro2:
                     if desfazer == True:
                         self.fator = (self.fator * -1)
                     continue
-                membro.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)
+                self.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)
 
 ##############################################################
 class InteracaoPrivada(InteracaoFixa):
@@ -340,14 +358,17 @@ class InteracaoPrivada(InteracaoFixa):
             MÉTODO SOBREESCRITO
             altera as relações entre os membros no panorama privado
         """
+
+        print(f"TIPO : {type(self.membros)}")
+
         panorama = 'privado'
-        for membro in self.membros:
-            for membro2 in self.membros:
+        for membro in self.membros.values():
+            for membro2 in self.membros.values():
                 if membro == membro2:
                     if desfazer == True:
                         self.fator = (self.fator * -1)
                     continue
 
-                membro.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)
+                self.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)
 
 ##############################################################
