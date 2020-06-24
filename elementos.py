@@ -201,17 +201,74 @@ class Pais():
             :param lider: endereço para uma instância de classe com as carcterística do líder (Lider)
             :param mundo: enderço para uma instância da classe que representa o mundo (Mundo)
         """
-        self.nome = nome
-        self.continente = continente
-        self.setorEconomico = setorEconomico
-        self.setorMilitar = setorMilitar
-        self.setorPrivado = setorPrivado
-        self.lider = lider
-        self.mundo = mundo
+        self.__nome = nome
+        self.__continente = continente
+        self.__setorEconomico = setorEconomico
+        self.__setorMilitar = setorMilitar
+        self.__setorPrivado = setorPrivado
+        self.__lider = lider
+        self.__mundo = mundo
 
         print(f'Criei o pais {nome}')
 
         self.mundo.paises[self.nome] = self #se adiciona na lista de países do mundo
+    
+    @property
+    def nome(self):
+        return self.__nome
+    
+    @nome.setter
+    def nome(self, nome):
+        self.__nome = nome
+    
+    @property
+    def continente(self):
+        return self.__continente
+    
+    @continente.setter
+    def continente(self, continente):
+        self.__continente = continente
+    
+    @property
+    def setorEconomico(self):
+        return self.__setorEconomico
+    
+    @setorEconomico.setter
+    def setorEconomico(self, setorEconomico):
+        self.__setorEconomico = setorEconomico
+    
+    @property
+    def setorMilitar(self):
+        return self.__setorMilitar
+    
+    @setorMilitar.setter
+    def setorMilitar(self, setorMilitar):
+        self.__setorMilitar = setorMilitar
+    
+    @property
+    def setorPrivado(self):
+        return self.__setorPrivado
+    
+    @setorPrivado.setter
+    def setorPrivado(self, setorPrivado):
+        self.__setorPrivado = setorPrivado
+    
+    @property
+    def lider(self):
+        return self.__lider
+    
+    @lider.setter
+    def lider(self, lider):
+        self.__lider = lider
+    
+    @property
+    def mundo(self):
+        return self.__mundo
+    
+    @mundo.setter
+    def mundo(self, mundo):
+        self.__mundo = mundo
+    
 
 ##############################################################
 
