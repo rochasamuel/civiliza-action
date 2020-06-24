@@ -91,3 +91,21 @@ def passarTurno(mundo):
     probabilidaDeAcaoAleatoria(mundo)
     atualizarInteracoesFixas(mundo)
     trocarAno(mundo)
+
+def prepararMundo(mundo):
+    """
+    Preenche o mundo
+    :param mundo:
+    :return:
+    """
+
+    for l in 'ABCDEF':
+        createPais(l,mundo)
+
+    mundo.panorama = Panorama(mundo)
+
+    for _ in range(10):
+        probabilidadeDeInteracaoFixa(mundo)
+        probabilidaDeAcaoAleatoria(mundo)
+
+    atualizarInteracoesFixas(mundo)
