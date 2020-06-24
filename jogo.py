@@ -1,6 +1,7 @@
 from instanciadores import *
 from classes import *
 import numpy as np
+import random
 
 
 """
@@ -44,7 +45,7 @@ def probabilidadeDeInteracaoFixa(mundo):
         createInteracaoFixa(mundo)
         dado = np.random.rand()
 
-def probavilidaDeAcaoAleatoria():
+def probavilidaDeAcaoAleatoria(mundo):
     """
     Implementa as regras de geração aleatória de ações entre os países
 
