@@ -31,16 +31,29 @@ def atualizarInteracoesFixas(mundo):
         if interacao.inicio == mundo.dia:
             interacao.fazerEfeito()
     for interacao in mundo.interacoesFixas:
-        if interacao.vigencia
+        if interacao.inicio + interacao.vigencia == mundo.dia:
+            interacao.fazerEfeito(desfazer = True)
 
+def probabilidadeDeInteracaoFixa(mundo):
+    """
+    Implementa as regras de geração aleatória de interaçãoFixa
+    :return:
+    """
+    dado = np.random.rand()
+    while dado > 0.9:
+        createInteracaoFixa(mundo)
+        dado = np.random.rand()
 
+def probavilidaDeAcaoAleatoria():
+    """
+    Implementa as regras de geração aleatória de ações entre os países
 
-    def probabilidadeDeInteracaoFixa(mundo):
-        """
-        Implementa as regras de geração aleatória de interaçãoFixa
-        :return:
-        """
-        pass
+    :return:
+    """
+    dado = np.random.rand()
+    while dado > 0.5:
+        createAcaoAleatoria(mundo)
+        dado = np.random.rand()
 
 
 def trocarAno(mundo):
@@ -53,13 +66,7 @@ def trocarAno(mundo):
     mundo.ano += 1
 
 
-    def probavilidaDeAcaoAleatoria():
-        """
-        Implementa as regras de geração aleatória de ações entre os países
 
-        :return:
-        """
-        pass
 
 def gerarObjetivos():
     """
