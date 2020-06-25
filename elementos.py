@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import random
+from random import randint
 
 ##SISTEMA SEGURO##
 ###############################################################
@@ -100,17 +101,16 @@ class Panorama():
         """
             :param mundo: recebe o endereço de uma instância da classe Mundo (Mundo)
         """
-        # Teste para não ter países: raise alguma coisa
+        # Teste para não ter países
         if len(mundo.paises) == 0:
-            # Exceção aqui
-            pass
+            raise Exception('Que mundo fraco! Tem nem país')
 
         listaDePaises = mundo.paises.keys()
         n_paises = len(listaDePaises)
 
         self.__economico = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
         self.__privado = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
-        self.__militar = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
+        self.__militar = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises) 
 
         self.__geral = self.__economico + self.__privado + self.__militar
 
@@ -210,9 +210,13 @@ class Pais():
         self.__lider = lider
         self.__mundo = mundo
 
-        print(f'Criei o pais {nome}')
+        # print(f'Criei o pais {nome}')
+
+        if self.__nome in self.mundo.paises:
+            Exception('Esse país já existe cara!')
 
         self.mundo.paises[self.nome] = self #se adiciona na lista de países do mundo
+
     
     @property
     def nome(self):
@@ -290,8 +294,10 @@ class Jogador(Pais):
                                3:{1:Acao('Acao P1',self,'privado'),
                                             2:Acao('Acao P2',self, 'privado')}}
         self.mundo.jogador = self
-        self.objetivo = None
+        self.objetivo = randint(4,10)
+        self.pais_objetivo = random.choice(['A','B','C','D','E','F'])
 
+        print(f'\nSeu objetivo é alcançar {self.objetivo} pontos com o país {self.pais_objetivo}')
     @property
     def acoesDeJogador(self):
        return self.__acoesDeJogador
@@ -300,13 +306,11 @@ class Jogador(Pais):
     def acoesDeJogador(self, acoesDeJogador):
         self.__acoesDeJogador = acoesDeJogador
 
-
     def cumpriuObjetivo(self):
-        obj = self.objetivo
-        if obj is None:
+        if self.objetivo is None:
             raise Exception('Não tem objetivo ainda')
-            return
-        return self.mundo.panorama.geral.loc[self.nome,obj['alvo']] >= obj['valor']
+        else:
+            return self.mundo.panorama.geral.loc[self.nome,self.pais_objetivo] >= self.objetivo
 ##############################################################
 class SetorEconomico():
     """
@@ -458,7 +462,7 @@ class Acao():
         self.__nome = nome
         self.__ator = ator # Pais()
         self.__nomePanorama = nomePanorama
-        print(f'Criei acao {self.nome}!')
+        # print(f'Criei acao {self.nome}!')
     
     @property
     def nome(self):
@@ -491,14 +495,14 @@ class Acao():
             :param alvo: país alvo da ação (Pais)
             :param fator: fator que irá acrescentar ou subtrair na relação (float)
         """
-        print(f'Entre fazerEfeitoi')
-        print(f'meu ator: {self.ator}')
-        print(f'meu alvo: {alvo}')
+        # print(f'Entre fazerEfeitoi')
+        # print(f'meu ator: {self.ator}')
+        # print(f'meu alvo: {alvo}')
 
         if self.ator == alvo:
-            raise Exception('Não inventa filho.')
+            raise Exception('Não inventa filho. Ação em si msm? WTF')
 
-        print(self.ator.setorEconomico)
+        # print(self.ator.setorEconomico)
         # self.ator.setorEconomico.aReceber[alvo.nome] = fator
         # alvo.setorEconomico.aPagar[self.ator.nome] = fator
 
@@ -590,7 +594,7 @@ class InteracaoMilitar(InteracaoFixa):
             altera as relações entre os membros no panorama militar
         """
 
-        print(f"TIPO : {type(self.membros)}")
+        # print(f"TIPO : {type(self.membros)}")
 
         panorama = 'militar'
         for membro in self.membros.values():
@@ -618,7 +622,7 @@ class InteracaoEconomica(InteracaoFixa):
             altera as relações entre os membros no panorama economico
         """
 
-        print(f"TIPO : {type(self.membros)}")
+        # print(f"TIPO : {type(self.membros)}")
 
         panorama = 'economico'
         for membro in self.membros.values():
@@ -646,7 +650,7 @@ class InteracaoPrivada(InteracaoFixa):
             altera as relações entre os membros no panorama privado
         """
 
-        print(f"TIPO : {type(self.membros)}")
+        # print(f"TIPO : {type(self.membros)}")
 
         panorama = 'privado'
         for membro in self.membros.values():

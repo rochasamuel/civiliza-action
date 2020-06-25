@@ -2,6 +2,7 @@ from instanciadores import *
 from elementos import *
 import numpy as np
 import random
+# from elementos import Jogador
 
 
 """
@@ -100,6 +101,7 @@ def prepararMundo(mundo):
 
 
 def menuPrincipal(mundo):
+    print('\n<==========================================>\n\tBem vindo ao CIVILIZA ACTION\n<==========================================>')
     nome = str(input('Qual o seu nome?\n'))
     # criacao jogador
 
@@ -110,7 +112,7 @@ def menuPrincipal(mundo):
                               createLider,
                               mundo)
 
-    print(f'Salve Salve {nome}!')
+    print(f'\nSalve Salve {nome}!\n========================')
 
     prepararMundo(mundo)
 
@@ -118,18 +120,14 @@ def menuPrincipal(mundo):
     cont_opcoes = 0
 
     while opcao != 9:
-        print('''
-        [1] - Ações
-        [2] - Ver Panorama
-        [3] - Passar o Turno
-        [9] - Terminar Jogo
+        print('''\n[1] - Ações\n[2] - Ver Panorama\n[3] - Passar o Turno\n[9] - Terminar Jogo
         ''')
 
         opcao = int(input('O que você quer fazer?\n'))
 
         if opcao == 1:
             if cont_opcoes == 1:
-                print('Tá querendo hackear??')
+                print('\n**********************\nTá querendo hackear??\n**********************')
                 continue
 
             lista_de_paises = [p for p in mundo.paises.keys()]
@@ -137,7 +135,7 @@ def menuPrincipal(mundo):
             # Pedir pra escolher alvo
             alvo = 'Nenhuma'
             while alvo not in lista_de_paises:
-                alvo = (input(f'Dos seguintes paises:\n{lista_de_paises}\nDigite exatamente o seu alvo.\n'))
+                alvo = (input(f'\nDos seguintes paises:\n>{lista_de_paises}<\nDigite exatamente o seu alvo.\n'))
 
             alvo = mundo.paises[alvo]
             fator = np.random.rand()
@@ -145,12 +143,7 @@ def menuPrincipal(mundo):
             opcao_acao = 0
 
             while opcao_acao != 9:
-                print('''
-                [1] - Setor Economico
-                [2] - Setor Militar
-                [3] - Setor Privado
-                [9] - Retornar
-                ''')
+                print('''\n[1] - Setor Economico\n[2] - Setor Militar\n[3] - Setor Privado\n[9] - Retornar\n''')
 
                 opcao_acao = int(input('Maneiro! Mas em qual setor?\n'))
 
@@ -158,22 +151,20 @@ def menuPrincipal(mundo):
                     sub_opcao_acao = 0
 
                     while sub_opcao_acao != 9:
-                        print('''
-                        [1] - Ação 1
-                        [2] - Ação 2
-                        [9] - Retornar
-                        ''')
+                        print('''\n[1] - Ação 1\n[2] - Ação 2\n[9] - Retornar\n''')
 
                         sub_opcao_acao = int(input('Top! E qual ação?\n'))
 
                         if sub_opcao_acao == 1:
                             cont_opcoes = 1
                             jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
+                            print('\nAção aplicada!')
                             break
 
                         if sub_opcao_acao == 2:
                             cont_opcoes = 1
                             jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
+                            print('\nAção aplicada!')
                             break
 
                         if sub_opcao_acao == 9:
@@ -184,22 +175,20 @@ def menuPrincipal(mundo):
                     sub_opcao_acao = 0
 
                     while sub_opcao_acao != 9:
-                        print('''
-                        [1] - Ação 1
-                        [2] - Ação 2
-                        [9] - Retornar
-                        ''')
+                        print('''\n[1] - Ação 1\n[2] - Ação 2\n[9] - Retornar\n''')
 
                         sub_opcao_acao = int(input('Top! E qual ação?'))
 
                         if sub_opcao_acao == 1:
                             cont_opcoes = 1
                             jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
+                            print('\nAção aplicada!')
                             break
 
                         if sub_opcao_acao == 2:
                             cont_opcoes = 1
                             jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
+                            print('\nAção aplicada!')
                             break
 
                         if sub_opcao_acao == 9:
@@ -210,22 +199,20 @@ def menuPrincipal(mundo):
                     sub_opcao_acao = 0
 
                     while sub_opcao_acao != 9:
-                        print('''
-                        [1] - Ação 1
-                        [2] - Ação 2
-                        [9] - Retornar
-                        ''')
+                        print('''\n[1] - Ação 1\n[2] - Ação 2\n[9] - Retornar\n''')
 
                         sub_opcao_acao = int(input('Top! E qual ação?'))
 
                         if sub_opcao_acao == 1:
                             cont_opcoes = 1
                             jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
+                            print('\nAção aplicada!')
                             break
 
                         if sub_opcao_acao == 2:
                             cont_opcoes = 1
                             jogador.acoesDeJogador[opcao_acao][sub_opcao_acao].fazerEfeito(alvo, fator)
+                            print('\nAção aplicada!')
                             break
 
                         if sub_opcao_acao == 9:
@@ -243,6 +230,9 @@ def menuPrincipal(mundo):
             # Passar o tempo
             cont_opcoes = 0
             passarTurno(mundo)
+            if jogador.cumpriuObjetivo():
+                print('\n*********************************\nParabéns vc cumpriu seu objetivo\n*********************************')
+                break
 
         if opcao == 9:
             # Sair
