@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import random
+from random import randint
 
 ##SISTEMA SEGURO##
 ###############################################################
@@ -293,8 +294,10 @@ class Jogador(Pais):
                                3:{1:Acao('Acao P1',self,'privado'),
                                             2:Acao('Acao P2',self, 'privado')}}
         self.mundo.jogador = self
-        self.objetivo = None
+        self.objetivo = randint(4,10)
+        self.pais_objetivo = random.choice(['A','B','C','D','E','F'])
 
+        print(f'\nSeu objetivo é alcançar {self.objetivo} pontos com o país {self.pais_objetivo}')
     @property
     def acoesDeJogador(self):
        return self.__acoesDeJogador
@@ -303,13 +306,11 @@ class Jogador(Pais):
     def acoesDeJogador(self, acoesDeJogador):
         self.__acoesDeJogador = acoesDeJogador
 
-
     def cumpriuObjetivo(self):
-        obj = self.objetivo
-        if obj is None:
+        if self.objetivo is None:
             raise Exception('Não tem objetivo ainda')
-            return
-        return self.mundo.panorama.geral.loc[self.nome,obj['alvo']] >= obj['valor']
+        else:
+            return self.mundo.panorama.geral.loc[self.nome,self.pais_objetivo] >= self.objetivo
 ##############################################################
 class SetorEconomico():
     """
