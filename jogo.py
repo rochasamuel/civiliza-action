@@ -2,6 +2,7 @@ from instanciadores import *
 from elementos import *
 import numpy as np
 import random
+# from elementos import Jogador
 
 
 """
@@ -222,6 +223,9 @@ def menuPrincipal(mundo):
             # Passar o tempo
             cont_opcoes = 0
             passarTurno(mundo)
+            if jogador.cumpriuObjetivo():
+                print('\n*********************************\nParabéns vc cumpriu seu objetivo\n*********************************')
+                break
 
         if opcao == 9:
             # Sair
