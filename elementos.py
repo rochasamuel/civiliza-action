@@ -3,26 +3,28 @@ import pandas as pd
 import random
 from random import randint
 
+
 ##SISTEMA SEGURO##
 ###############################################################
 class Mundo():
     """
         Classe onde todos os outros objetos vão residir. Vai ser usada majoritariamente como um hub de informações.
     """
+
     def __init__(self):
         """
             A classe é instanciada sem nenhum atributo porque eles são instaciados depois, recebendo Mundo() como attr.
         """
-        self.__paises = {} # é um dicionário no formato {'nome_pais':Pais()}
-        self.__ano = 1 # Variável de contagem de turnos
-        self.__interacoesFixas = [] # Lista com os objetos interacaoFixa()
-        self.__panorama = None # Panorama() do mundo, com os três filhos
+        self.__paises = {}  # é um dicionário no formato {'nome_pais':Pais()}
+        self.__ano = 1  # Variável de contagem de turnos
+        self.__interacoesFixas = []  # Lista com os objetos interacaoFixa()
+        self.__panorama = None  # Panorama() do mundo, com os três filhos
         self.__jogador = None
 
     @property
     def paises(self):
         return self.__paises
-        
+
     @paises.setter
     def paises(self, paises):
         self.__paises = paises
@@ -42,7 +44,7 @@ class Mundo():
     @interacoesFixas.setter
     def interacoesFixas(self, interacoesFixas):
         self.__interacoesFixas = interacoesFixas
-    
+
     @property
     def panorama(self):
         return self.__panorama
@@ -58,9 +60,7 @@ class Mundo():
     @jogador.setter
     def jogador(self, jogador):
         self.__jogador = jogador
-    
 
-    
     def paisesAleatorios(self, n_paises=None):
         """
             Método a ser usado para gerar interacaoFixa() aleatórias.
@@ -90,13 +90,14 @@ class Mundo():
 
         print(self.panorama.geral)
 
-        
+
 ##############################################################
 class Panorama():
     """
         Classe que representa os panoramas do Mundo, ou seja a relação de cada 
         país com outro em cada esfera(Privada, Militar e Econômica)    
     """
+
     def __init__(self, mundo):
         """
             :param mundo: recebe o endereço de uma instância da classe Mundo (Mundo)
@@ -110,7 +111,7 @@ class Panorama():
 
         self.__economico = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
         self.__privado = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
-        self.__militar = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises) 
+        self.__militar = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
 
         self.__geral = self.__economico + self.__privado + self.__militar
 
@@ -149,7 +150,6 @@ class Panorama():
     def geral(self, geral):
         self.__geral = geral
 
-
     def atualizarPanorama(self):
         """
             Função chamada para atualizar os valores do panorama geral
@@ -176,28 +176,28 @@ class Panorama():
 
         if nomePanorama == 'privado':
             self.privado.loc[A.nome, B.nome] = self.privado.loc[A.nome, B.nome] + fator
-            self.privado.loc[B.nome, A.nome] = self.privado.loc[B.nome,A.nome] + fator
+            self.privado.loc[B.nome, A.nome] = self.privado.loc[B.nome, A.nome] + fator
 
             self.atualizarPanorama()
 
         if nomePanorama == 'economico':
             self.economico.loc[A.nome, B.nome] = self.economico.loc[A.nome, B.nome] + fator
-            self.economico.loc[B.nome, A.nome] = self.economico.loc[B.nome,A.nome] + fator
+            self.economico.loc[B.nome, A.nome] = self.economico.loc[B.nome, A.nome] + fator
 
             self.atualizarPanorama()
+
 
 ##############################################################
 class Pais():
     """
         Classe que representa um país. Será atribuido a um jogador
     """
+
     def __init__(self, nome, continente,
-    setorEconomico, setorMilitar, setorPrivado, 
-    lider, mundo):
+                 setorEconomico, setorMilitar, setorPrivado,
+                 lider, mundo):
         """
             :param nome: Nome do país (str)
-            :param populacao: população do país (int)
-            :param imigrantes: quantidade de imigrantes (int) 
             :param continente: continente em que o país se encontra (str)
             :param setorEconomico: endereço para uma instância de classe com as características econômicas (SetorEconomico)
             :param setorMilitar: endereço para uma instância de classe com as características econômicas (SetorMilitar)
@@ -218,65 +218,64 @@ class Pais():
         if self.__nome in self.mundo.paises:
             Exception('Esse país já existe cara!')
 
-        self.mundo.paises[self.nome] = self #se adiciona na lista de países do mundo
+        self.mundo.paises[self.nome] = self  # se adiciona na lista de países do mundo
 
-    
     @property
     def nome(self):
         return self.__nome
-    
+
     @nome.setter
     def nome(self, nome):
         self.__nome = nome
-    
+
     @property
     def continente(self):
         return self.__continente
-    
+
     @continente.setter
     def continente(self, continente):
         self.__continente = continente
-    
+
     @property
     def setorEconomico(self):
         return self.__setorEconomico
-    
+
     @setorEconomico.setter
     def setorEconomico(self, setorEconomico):
         self.__setorEconomico = setorEconomico
-    
+
     @property
     def setorMilitar(self):
         return self.__setorMilitar
-    
+
     @setorMilitar.setter
     def setorMilitar(self, setorMilitar):
         self.__setorMilitar = setorMilitar
-    
+
     @property
     def setorPrivado(self):
         return self.__setorPrivado
-    
+
     @setorPrivado.setter
     def setorPrivado(self, setorPrivado):
         self.__setorPrivado = setorPrivado
-    
+
     @property
     def lider(self):
         return self.__lider
-    
+
     @lider.setter
     def lider(self, lider):
         self.__lider = lider
-    
+
     @property
     def mundo(self):
         return self.__mundo
-    
+
     @mundo.setter
     def mundo(self, mundo):
         self.__mundo = mundo
-    
+
 
 ##############################################################
 
@@ -284,26 +283,28 @@ class Jogador(Pais):
     """
     Pais 'superpoderoso', com os métodos de jogador
     """
+
     def __init__(self, nome, continente,
-    setorEconomico, setorMilitar, setorPrivado,
-    lider, mundo):
+                 setorEconomico, setorMilitar, setorPrivado,
+                 lider, mundo):
         super().__init__(nome, continente,
-    setorEconomico, setorMilitar, setorPrivado,
-    lider, mundo)
-        self.__acoesDeJogador = {1:{1:Acao('Acao A1',self,'economico'),
-                                            2:Acao('Acao A2',self, 'economico')},
-                               2:{1:Acao('Acao M1',self,'militar'),
-                                            2:Acao('Acao M2',self, 'militar')},
-                               3:{1:Acao('Acao P1',self,'privado'),
-                                            2:Acao('Acao P2',self, 'privado')}}
+                         setorEconomico, setorMilitar, setorPrivado,
+                         lider, mundo)
+        self.__acoesDeJogador = {1: {1: Acao('Acao A1', self, 'economico'),
+                                     2: Acao('Acao A2', self, 'economico')},
+                                 2: {1: Acao('Acao M1', self, 'militar'),
+                                     2: Acao('Acao M2', self, 'militar')},
+                                 3: {1: Acao('Acao P1', self, 'privado'),
+                                     2: Acao('Acao P2', self, 'privado')}}
         self.mundo.jogador = self
-        self.objetivo = randint(4,10)
-        self.pais_objetivo = random.choice(['A','B','C','D','E','F'])
+        self.objetivo = randint(4, 10)
+        self.pais_objetivo = random.choice(['A', 'B', 'C', 'D', 'E', 'F'])
 
         print(f'\nSeu objetivo é alcançar {self.objetivo} pontos com o país {self.pais_objetivo}')
+
     @property
     def acoesDeJogador(self):
-       return self.__acoesDeJogador
+        return self.__acoesDeJogador
 
     @acoesDeJogador.setter
     def acoesDeJogador(self, acoesDeJogador):
@@ -313,12 +314,15 @@ class Jogador(Pais):
         if self.objetivo is None:
             raise Exception('Não tem objetivo ainda')
         else:
-            return self.mundo.panorama.geral.loc[self.nome,self.pais_objetivo] >= self.objetivo
+            return self.mundo.panorama.geral.loc[self.nome, self.pais_objetivo] >= self.objetivo
+
+
 ##############################################################
 class SetorEconomico():
     """
         Classe que comporta informações sobre o setor econômico de um país
     """
+
     def __init__(self, limite_aReceber, limite_aPagar):
         """
             :param limite_aReceber: limite de investimento que um pais pode receber (float)
@@ -326,9 +330,9 @@ class SetorEconomico():
         """
         self.__limite_aReceber = limite_aReceber
         self.__limite_aPagar = limite_aPagar
-        
-        self.__aPagar = pd.Series(dtype = float)
-        self.__aReceber = pd.Series(dtype = float)
+
+        self.__aPagar = pd.Series(dtype=float)
+        self.__aReceber = pd.Series(dtype=float)
 
     @property
     def limite_aPagar(self):
@@ -361,12 +365,14 @@ class SetorEconomico():
     @aReceber.setter
     def aReceber(self, aReceber):
         self.__aReceber = aReceber
-        
+
+
 ##############################################################
 class SetorMilitar():
     """
         Classe que comporta informações sobre o setor militar de um país
     """
+
     def __init__(self, arsenal, tropa):
         """
             :param arsenal: informações sobre o arsenal (dict)
@@ -390,21 +396,22 @@ class SetorMilitar():
     @tropa.setter
     def tropa(self, tropa):
         self.__tropa = tropa
-        
+
+
 ##############################################################
 class SetorPrivado():
     """
         Classe que comporta informações sobre o setor privado de um país
     """
+
     def __init__(self, exportacao, importacao):
         """
             :param exportacao: lista de países para quem o país exporta (list(Pais))
             :param importacao: lista de países para quem o país importa (list(Pais))
         """
-        self.__exportacao = exportacao # Lista de Países
-        self.__importacao = importacao # Lista de Países   
+        self.__exportacao = exportacao  # Lista de Países
+        self.__importacao = importacao  # Lista de Países
 
-    
     @property
     def exportacao(self):
         return self.__exportacao
@@ -412,7 +419,7 @@ class SetorPrivado():
     @exportacao.setter
     def exportacao(self, exportacao):
         self.__exportacao = exportacao
-    
+
     @property
     def importacao(self):
         return self.__importacao
@@ -420,20 +427,22 @@ class SetorPrivado():
     @importacao.setter
     def importacao(self, importacao):
         self.__importacao = importacao
-    
+
+
 ##############################################################
 class Lider():
     """
         Classe que representa um líder
     """
+
     def __init__(self, nome, orientacao):
         """
             :param nome: nome do líder (str)
             :param orientacao: um numero inteiro [0 ou 1] representando a orientacao (int)
         """
         self.__nome = nome
-        self.__orientacao = orientacao   
-    
+        self.__orientacao = orientacao
+
     @property
     def nome(self):
         return self.__nome
@@ -441,7 +450,7 @@ class Lider():
     @nome.setter
     def nome(self, nome):
         self.__nome = nome
-    
+
     @property
     def orientacao(self):
         return self.__orientacao
@@ -449,13 +458,14 @@ class Lider():
     @orientacao.setter
     def orientacao(self, orientacao):
         self.__orientacao = orientacao
-    
+
 
 ##############################################################
 class Acao():
     """
         Classe que representa genericamente um ação
     """
+
     def __init__(self, nome, ator, nomePanorama):
         """
             :param nome: nome da ação (str)
@@ -463,10 +473,10 @@ class Acao():
             :param nomePanorama: nome do panorama a ser afetado (str)
         """
         self.__nome = nome
-        self.__ator = ator # Pais()
+        self.__ator = ator  # Pais()
         self.__nomePanorama = nomePanorama
         # print(f'Criei acao {self.nome}!')
-    
+
     @property
     def nome(self):
         return self.__nome
@@ -474,7 +484,7 @@ class Acao():
     @nome.setter
     def nome(self, nome):
         self.__nome = nome
-        
+
     @property
     def ator(self):
         return self.__ator
@@ -482,7 +492,7 @@ class Acao():
     @ator.setter
     def ator(self, ator):
         self.__ator = ator
-        
+
     @property
     def nomePanorama(self):
         return self.__nomePanorama
@@ -490,7 +500,6 @@ class Acao():
     @nomePanorama.setter
     def nomePanorama(self, nomePanorama):
         self.__nomePanorama = nomePanorama
-    
 
     def fazerEfeito(self, alvo, fator):
         """
@@ -509,13 +518,16 @@ class Acao():
         # self.ator.setorEconomico.aReceber[alvo.nome] = fator
         # alvo.setorEconomico.aPagar[self.ator.nome] = fator
 
-        self.ator.mundo.panorama.alterarRelacao(self.ator, alvo, self.nomePanorama, fator)      
+        self.ator.mundo.panorama.alterarRelacao(self.ator, alvo, self.nomePanorama, fator)
 
-##############################################################
+    ##############################################################
+
+
 class InteracaoFixa():
     """
         Classe que representa o esqueleto das interações fixas
     """
+
     def __init__(self, membros, inicio, vigencia, fator):
         """
             :param membros: membros da interações (list(Pais))
@@ -531,8 +543,7 @@ class InteracaoFixa():
         random_member = membros[[p for p in membros.keys()][0]]
 
         self.__mundo = random_member.mundo
-    
-    
+
     @property
     def membros(self):
         return self.__membros
@@ -540,7 +551,7 @@ class InteracaoFixa():
     @membros.setter
     def membros(self, membros):
         self.__membros = membros
-        
+
     @property
     def inicio(self):
         return self.__inicio
@@ -548,7 +559,7 @@ class InteracaoFixa():
     @inicio.setter
     def inicio(self, inicio):
         self.__inicio = inicio
-        
+
     @property
     def vigencia(self):
         return self.__vigencia
@@ -556,7 +567,7 @@ class InteracaoFixa():
     @vigencia.setter
     def vigencia(self, vigencia):
         self.__vigencia = vigencia
-        
+
     @property
     def fator(self):
         return self.__fator
@@ -564,7 +575,7 @@ class InteracaoFixa():
     @fator.setter
     def fator(self, fator):
         self.__fator = fator
-        
+
     @property
     def mundo(self):
         return self.__mundo
@@ -572,26 +583,28 @@ class InteracaoFixa():
     @mundo.setter
     def mundo(self, mundo):
         self.__mundo = mundo
-        
+
     def fazerEfeito(self):
         """
             método a ser sobreescrito nas interações
         """
         pass
-    
+
+
 ##############################################################
 class InteracaoMilitar(InteracaoFixa):
     """
         Classe que herda os atributos de InteraçãoFixa para representar uma interação militar
     """
+
     def __init__(self, membros, inicio, vigencia, fator):
         """
             atributos herdados de InteracaoFixa
             :param desfazer: identifica se a interação vai ser revertida ou não
         """
         super().__init__(membros, inicio, vigencia, fator)
-        
-    def fazerEfeito(self, desfazer = False):
+
+    def fazerEfeito(self, desfazer=False):
         """
             MÉTODO SOBREESCRITO
             altera as relações entre os membros no panorama militar
@@ -603,23 +616,25 @@ class InteracaoMilitar(InteracaoFixa):
         for membro in self.membros.values():
             for membro2 in self.membros.values():
                 if membro == membro2:
-                    if desfazer == True:
+                    if desfazer:
                         self.fator = (self.fator * -1)
                     continue
                 self.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)
+
 
 ##############################################################
 class InteracaoEconomica(InteracaoFixa):
     """
         Classe que herda os atributos de InteraçãoFixa para representar uma interação economica
     """
+
     def __init__(self, membros, inicio, vigencia, fator):
         """
             atributos herdados de InteracaoFixa
         """
         super().__init__(membros, inicio, vigencia, fator)
-        
-    def fazerEfeito(self, desfazer = False):
+
+    def fazerEfeito(self, desfazer=False):
         """
             MÉTODO SOBREESCRITO
             altera as relações entre os membros no panorama economico
@@ -631,23 +646,25 @@ class InteracaoEconomica(InteracaoFixa):
         for membro in self.membros.values():
             for membro2 in self.membros.values():
                 if membro == membro2:
-                    if desfazer == True:
+                    if desfazer:
                         self.fator = (self.fator * -1)
                     continue
                 self.mundo.panorama.alterarRelacao(membro, membro2, panorama, self.fator)
+
 
 ##############################################################
 class InteracaoPrivada(InteracaoFixa):
     """
         Classe que herda os atributos de InteraçãoFixa para representar uma interação privada
     """
+
     def __init__(self, membros, inicio, vigencia, fator):
         """
             atributos herdados de InteracaoFixa
         """
         super().__init__(membros, inicio, vigencia, fator)
-    
-    def fazerEfeito(self, desfazer = False):
+
+    def fazerEfeito(self, desfazer=False):
         """
             MÉTODO SOBREESCRITO
             altera as relações entre os membros no panorama privado
@@ -659,7 +676,7 @@ class InteracaoPrivada(InteracaoFixa):
         for membro in self.membros.values():
             for membro2 in self.membros.values():
                 if membro == membro2:
-                    if desfazer == True:
+                    if desfazer:
                         self.fator = (self.fator * -1)
                     continue
 
