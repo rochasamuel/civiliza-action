@@ -102,7 +102,7 @@ def prepararMundo(mundo):
 
 def menuPrincipal(mundo):
     print('\n<==========================================>\n\tBem vindo ao CIVILIZA ACTION\n<==========================================>')
-    nome = str(input('Qual o seu nome?\n'))
+    nome = str(input('Qual o seu nome?\n')).upper()
     # criacao jogador
 
     jogador = Jogador(nome, 'C1',
@@ -135,7 +135,7 @@ def menuPrincipal(mundo):
             # Pedir pra escolher alvo
             alvo = 'Nenhuma'
             while alvo not in lista_de_paises:
-                alvo = (input(f'\nDos seguintes paises:\n>{lista_de_paises}<\nDigite exatamente o seu alvo.\n'))
+                alvo = (input(f'\nDos seguintes paises:\n>{lista_de_paises}<\nDigite exatamente o seu alvo.\n')).upper()
 
             alvo = mundo.paises[alvo]
             fator = np.random.rand()
