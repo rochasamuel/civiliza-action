@@ -97,10 +97,10 @@ def createAcaoAleatoria(mundo):
     alvo = random.choice([p for p in mundo.paises.keys()])
     while alvo == ator:
         alvo = random.choice([p for p in mundo.paises.keys()])
-    print(f'Chaves: {ator}:{alvo}')
+    # print(f'Chaves: {ator}:{alvo}')
     ator = mundo.paises[ator]
     alvo = mundo.paises[alvo]
-    print(f'CLASSES: {ator}:{alvo}')
+    # print(f'CLASSES: {ator}:{alvo}')
     fator = np.random.rand()
     nomePanorama = random.choice(['militar','privado','economico'])
     AcaoAleatoria = e.Acao('Acao Repentina',ator, nomePanorama)
