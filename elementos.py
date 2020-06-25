@@ -209,7 +209,7 @@ class Pais():
         self.__lider = lider
         self.__mundo = mundo
 
-        print(f'Criei o pais {nome}')
+        # print(f'Criei o pais {nome}')
 
         if self.__nome in self.mundo.paises:
             Exception('Esse país já existe cara!')
@@ -461,7 +461,7 @@ class Acao():
         self.__nome = nome
         self.__ator = ator # Pais()
         self.__nomePanorama = nomePanorama
-        print(f'Criei acao {self.nome}!')
+        # print(f'Criei acao {self.nome}!')
     
     @property
     def nome(self):
@@ -494,14 +494,14 @@ class Acao():
             :param alvo: país alvo da ação (Pais)
             :param fator: fator que irá acrescentar ou subtrair na relação (float)
         """
-        print(f'Entre fazerEfeitoi')
-        print(f'meu ator: {self.ator}')
-        print(f'meu alvo: {alvo}')
+        # print(f'Entre fazerEfeitoi')
+        # print(f'meu ator: {self.ator}')
+        # print(f'meu alvo: {alvo}')
 
         if self.ator == alvo:
             raise Exception('Não inventa filho. Ação em si msm? WTF')
 
-        print(self.ator.setorEconomico)
+        # print(self.ator.setorEconomico)
         # self.ator.setorEconomico.aReceber[alvo.nome] = fator
         # alvo.setorEconomico.aPagar[self.ator.nome] = fator
 
@@ -593,7 +593,7 @@ class InteracaoMilitar(InteracaoFixa):
             altera as relações entre os membros no panorama militar
         """
 
-        print(f"TIPO : {type(self.membros)}")
+        # print(f"TIPO : {type(self.membros)}")
 
         panorama = 'militar'
         for membro in self.membros.values():
@@ -621,7 +621,7 @@ class InteracaoEconomica(InteracaoFixa):
             altera as relações entre os membros no panorama economico
         """
 
-        print(f"TIPO : {type(self.membros)}")
+        # print(f"TIPO : {type(self.membros)}")
 
         panorama = 'economico'
         for membro in self.membros.values():
@@ -649,7 +649,7 @@ class InteracaoPrivada(InteracaoFixa):
             altera as relações entre os membros no panorama privado
         """
 
-        print(f"TIPO : {type(self.membros)}")
+        # print(f"TIPO : {type(self.membros)}")
 
         panorama = 'privado'
         for membro in self.membros.values():
