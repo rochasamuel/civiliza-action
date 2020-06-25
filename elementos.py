@@ -100,17 +100,16 @@ class Panorama():
         """
             :param mundo: recebe o endereço de uma instância da classe Mundo (Mundo)
         """
-        # Teste para não ter países: raise alguma coisa
+        # Teste para não ter países
         if len(mundo.paises) == 0:
-            # Exceção aqui
-            pass
+            raise Exception('Que mundo fraco! Tem nem país')
 
         listaDePaises = mundo.paises.keys()
         n_paises = len(listaDePaises)
 
         self.__economico = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
         self.__privado = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
-        self.__militar = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises)
+        self.__militar = pd.DataFrame(np.random.rand(n_paises, n_paises), index=listaDePaises, columns=listaDePaises) 
 
         self.__geral = self.__economico + self.__privado + self.__militar
 
@@ -212,7 +211,11 @@ class Pais():
 
         print(f'Criei o pais {nome}')
 
+        if self.__nome in self.mundo.paises:
+            Exception('Esse país já existe cara!')
+
         self.mundo.paises[self.nome] = self #se adiciona na lista de países do mundo
+
     
     @property
     def nome(self):
@@ -496,7 +499,7 @@ class Acao():
         print(f'meu alvo: {alvo}')
 
         if self.ator == alvo:
-            raise Exception('Não inventa filho.')
+            raise Exception('Não inventa filho. Ação em si msm? WTF')
 
         print(self.ator.setorEconomico)
         # self.ator.setorEconomico.aReceber[alvo.nome] = fator
