@@ -114,6 +114,9 @@ class Panorama():
 
         self.__geral = self.__economico + self.__privado + self.__militar
 
+    def __repr__(self):
+        return "Panorama geral:\n" + self.__geral.to_string()
+
     @property
     def economico(self):
         return self.__economico

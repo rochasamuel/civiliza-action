@@ -224,7 +224,7 @@ def menuPrincipal(mundo):
 
         if opcao == 2:
             # Mostrar panorama
-            print(mundo.panorama.geral)
+            print(mundo.panorama)
 
         if opcao == 3:
             # Passar o tempo
